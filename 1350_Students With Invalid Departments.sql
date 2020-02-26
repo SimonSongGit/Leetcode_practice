@@ -1,3 +1,5 @@
+# time: O(n)
+
 select a.id,a.name from students a
 where a.department_id not in (select id from departments);
 
