@@ -1,0 +1,2 @@
+select x,y,z,if(x+y>z and y+z>x and x+z>y,'Yes','No') as trangle 
+from triangle
