@@ -1,3 +1,17 @@
+#easy to understand
+select *
+from stadium
+where people>=100 and
+      ((id+1 in (select id from stadium where people>=100) and
+	  id+2 in (select id from stadium where people>=100))or
+       (id+1 in (select id from stadium where people>=100) and
+	  id-1 in (select id from stadium where people>=100))or
+	  (id-1 in (select id from stadium where people>=100) and
+       id-2 in (select id from stadium where people>=100)));
+
+
+
+#find sequence start_id and end_id, then use WHERE to SELECT
 select id,visit_date,people 
 from stadium, (select start_id,end_id 
                    from (
@@ -12,5 +26,5 @@ from stadium, (select start_id,end_id
                      from (select @incr2:=0) incr2,(select * from stadium where people>=100) s1
                      left join (select * from stadium where people>=100) s2 on s1.id=s2.id-1
                      where s2.id is null) t2 on t1.r1=t2.r2
-                     where end_id-start_id>=3) t3
+                     where end_id-start_id>=2) t3
 where id between start_id and end_id
