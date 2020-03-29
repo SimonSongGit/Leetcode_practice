@@ -8,12 +8,12 @@ select s.product_id,product_name,all_year as report_year,
 		end) as total_amount
 from sales s
      inner join product p on s.product_id=p.product_id
-     cross join (select year(period_start) as all_year
+     cross join (select '2018' as all_year
                   from sales
                   union
-                  select year(period_end)
+                  select '2019'
                   from sales
                   union
-                  select '2019') t1 
+                  select '2020') t1 
 where all_year between year(period_start) and year(period_end)
 order by s.product_id,report_year
