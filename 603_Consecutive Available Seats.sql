@@ -13,6 +13,12 @@ from cinema a
       inner join cinema b on ((a.seat_id=b.seat_id+1 or a.seat_id=b.seat_id-1) 
 							      and a.free=b.free=True
 								 )
-order by a.seat_id
+order by a.seat_id;
+
+
+select distinct c1.seat_id
+from cinema c1, cinema c2
+where c1.free = c2.free = 1 and (c1.seat_id = c2.seat_id+1 or c1.seat_id = c2.seat_id-1)
+order by c1.seat_id
                 
                 
