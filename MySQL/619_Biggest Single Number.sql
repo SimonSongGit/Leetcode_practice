@@ -1,4 +1,4 @@
-select num
+select ifnull(num,null) as num
 from number
 group by num
 having count(*)=1
