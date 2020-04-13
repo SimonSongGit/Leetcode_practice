@@ -1,3 +1,8 @@
+select stock_name,sum(case when operation='sell' then price else -price end) as capital_gain_loss
+from stocks
+group by stock_name;
+
+
 select t1.stock_name,sum(t2.price-t1.price) as capital_gain_loss
 from  (select price,if(@pre=stock_name,@incr:=@incr+1,@incr:=1) as id,@pre:=stock_name as stock_name
        from stocks,(select @incr:=0,@pre:=0) t1
