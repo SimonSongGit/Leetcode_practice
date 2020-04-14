@@ -19,3 +19,18 @@ class Solution:
             head = tmp
         head = prev
         return head
+
+
+
+#recursive method
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        return self.rev_(head)
+    
+    def rev_(self,node,prev=None):
+        if not node:
+            return prev
+        
+        n = node.next
+        node.next = prev
+        return self.rev_(n,node)
