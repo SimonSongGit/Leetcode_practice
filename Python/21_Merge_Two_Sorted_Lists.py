@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.next = None
 
+#recursive
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         if l1 is None or l2 is None:
@@ -14,3 +15,20 @@ class Solution:
         else:
             l2.next = self.mergeTwoLists(l1,l2.next)
             return l2
+
+
+#iterative
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummy = cur = ListNode(0)
+        
+        while l1 and l2:
+            if l1.val<l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        cur.next = l1 or l2
+        return dummy.next 
