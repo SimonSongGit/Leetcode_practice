@@ -16,3 +16,20 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
         return slow is fast
+
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        if not head or not head.next:
+            return False
+        
+        slow = head
+        fast = head.next
+        
+        while slow is not fast:
+            if fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+            else:
+                return False
+        return slow is fast
