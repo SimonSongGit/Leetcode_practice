@@ -7,4 +7,14 @@ from activity a
                                        from activity
                                        group by player_id)
 	 ) t1 on t1.player_id=a.player_id
-group by t1.event_date
+group by t1.event_date;
+
+
+
+select dt as install_dt, count(pid) as installs, round(count(player_id)/count(pid),2) as Day1_retention
+from (select *
+      from (select player_id as pid, min(a1.event_date) as dt
+			from activity a1
+			group by a1.player_id) t1
+			left join activity a2 on t1.pid=a2.player_id and datediff(a2.event_date,t1.dt)=1) t2
+group by dt
